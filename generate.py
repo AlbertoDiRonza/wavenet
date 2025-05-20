@@ -36,8 +36,8 @@ def generate_audio_audio_model_output(
     return generated_audio
 
 def main(): 
-    path_to_model = 
-    path_to_output_wav =
+    path_to_model = "wavenet_in1024_nf16_k2_nres9_bat32_e20.h5"
+    path_to_output_wav = "wavenet_sample_output.wav"
     generated_frames = 2 ** 17 
     input_audio_size = 1024
     
