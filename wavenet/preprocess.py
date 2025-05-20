@@ -129,12 +129,12 @@ def get_audio_sample_batches(file_path, receptive_field_size,
         audio = scale_audio_int16_to_float64(audio)
         # Sliding window
         offset = 0
-        while offset + receptive_field_size-1 < len(audio):
+        while offset + receptive_field_size - 1 < len(audio):
             X.append(
                 audio[
-                    offset:offset + receptive_field_size - 1
-                ]
-            ).reshape(receptive_field_size, 1)
+                    offset:offset + receptive_field_size
+                ].reshape(receptive_field_size, 1)
+            )
             # TODO: y è il vettore in input? 
             y_cur = audio[receptive_field_size]
             y_cur = mu_law_encode(y_cur)

@@ -1,5 +1,6 @@
 from keras.layers import (
-    Add, Activation, Conv1D, Dense, Flatten, Multiply)
+    Add, Activation, Conv1D, Dense, Flatten, Multiply, Input
+    )
 from keras.models import Model
 
 def build_residual_block(num_filters, kernel_size,
@@ -19,11 +20,11 @@ def build_residual_block(num_filters, kernel_size,
     
     # Gated activation
     x_sigmoid = Conv1D(
-        num_filters, kernel_size, dilation_rate, 
-        padding='same', strides=1, activation='sigmoid')(x_input)
+        num_filters, kernel_size, strides=1, padding='same',
+        dilation_rate=dilation_rate, activation='sigmoid')(x_input)
     x_tanh = Conv1D(
-        num_filters, kernel_size, dilation_rate, 
-        padding='same', strides=1, activation='tanh')(x_input)
+        num_filters, kernel_size, strides=1, padding='same',
+        dilation_rate=dilation_rate, activation='tanh')(x_input)
     x_mul = Multiply()([x_sigmoid, x_tanh])
     
     # caluculating skip connection and residual connection
@@ -39,16 +40,16 @@ def build_wavenet_model(input_size, num_residual_blocks,
     x_input = Input(batch_shape=(None, input_size, 1))
     # First convolution over the input
     x_conv1 = Conv1D(num_filters, kernel_size, padding='same')(x_input)
-    output_skip_conn = []
+    output_skip_conns = []
     
     # Fulling the skip connection list
     for i in range(num_residual_blocks):
         x_conv1, output_skip_conn = build_residual_block(num_filters, kernel_size, 
                                                          2**(i+1), x_conv1)
-        output_skip_conn.append(output_skip_conn)
+        output_skip_conns.append(output_skip_conn)
     
     # Preparing the output of the model
-    output = Add()(output_skip_conn)
+    output = Add()(output_skip_conns)
     output_relu1 = Activation('relu')(output)
     output_conv1 = Conv1D(1, 1)(output_relu1)
     output_relu2 = Activation('relu')(output_conv1)
