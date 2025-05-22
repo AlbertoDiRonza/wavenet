@@ -38,7 +38,7 @@ def train_wavenet(path_to_audio_train, path_to_audio_val, input_size,
 
 def main():
     path_to_audio_train = "data/train/"
-    path_to_audio_val = "data/val/"
+    path_to_audio_val = "data/valid/"
     input_size = 1024
     num_filters = 16
     kernel_size = 2
