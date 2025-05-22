@@ -103,7 +103,7 @@ def to_one_hot(xt):
     Returns:
         numpy.ndarray: One-hot encoded data.
     """
-    return np.eye(256)[xt.astype(int)]  # Convert to int for indexing
+    return np.eye(256, dtype="uint8")[xt]  # Convert to int for indexing
 
 def get_audio_sample_batches(file_path, receptive_field_size, 
                               stride_step=32): 
