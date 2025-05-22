@@ -160,7 +160,7 @@ def prediction_to_waveform_value(probability_distribution, random=False):
         value will be selected.
     """
     if random: 
-        choice = nprandom.choice(
+        choice = np.random.choice(
             range(256), 
             p=probability_distribution
         )
