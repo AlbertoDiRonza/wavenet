@@ -3,6 +3,7 @@ import scipy.io.wavfile as wav
 from keras.models import load_model
 
 from wavenet.preprocess import prediction_to_waveform_value
+from modelStructure import plot_model_structure
 
 def generate_audio_audio_model_output(
     path_to_model, path_to_output_wav, input_audio_size,
@@ -44,6 +45,9 @@ def main():
     # Sample rate has to be the same as the files used fot training
     # ma da dove lo prende? 
     sample_rate = 22050
+    
+    # Plot the model structure
+    plot_model_structure(path_to_model)
     
     generated_audio = generate_audio_audio_model_output(
         path_to_model, path_to_output_wav, input_audio_size,
