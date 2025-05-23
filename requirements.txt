@@ -1,0 +1,21 @@
+# Required libraries for the wavenet project
+
+# Deep Learning Framework (TensorFlow with integrated Keras)
+# Replace with the exact TensorFlow version you used for development
+tensorflow==2.19.0
+
+# Numerical operations
+# Specify a minimum version
+numpy==2.1.3
+
+# Scientific computing (signal processing, etc.)
+# Specify a minimum version
+scipy==1.15.3
+
+# Note: Keras is integrated into TensorFlow from version 2.4.0 onwards.
+# If you are using a TensorFlow version where Keras is integrated,
+# you typically do not need to specify Keras separately unless you need
+# a specific standalone Keras version (e.g., if your project was built
+# with an older standalone Keras before the integration).
+# If you do need a specific standalone Keras version:
+# keras==2.10.0 # Replace with the exact Keras version
