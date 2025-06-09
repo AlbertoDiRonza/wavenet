@@ -3,6 +3,7 @@ import scipy.io.wavfile as wav
 from keras.models import load_model
 
 from wavenet.preprocess import prediction_to_waveform_value
+from modelStructure import plot_model_structure
 
 def generate_audio_audio_model_output(
     path_to_model, path_to_output_wav, input_audio_size,
@@ -24,8 +25,8 @@ def generate_audio_audio_model_output(
     generated_audio = np.zeros(input_audio_size, dtype=np.int16)
     cur_frame = 0 
     while cur_frame < genereted_frames:
-        # Questo .predict() nel while sembra non essere corretto dalla documentazione
-        # https://keras.io/api/models/model_training_apis/
+        print(f"cur_frame: {cur_frame} on {genereated_frames}")
+        # Remember to check: https://keras.io/api/models/model_training_apis/
         probability_distribution = wavenet.predict(
             generated_audio[cur_frame:].reshape(
                 1, input_audio_size, 1)).flatten()
@@ -42,8 +43,10 @@ def main():
     input_audio_size = 1024
     
     # Sample rate has to be the same as the files used fot training
-    # ma da dove lo prende? 
     sample_rate = 22050
+    
+    # Plot the model structure
+    plot_model_structure(path_to_model)
     
     generated_audio = generate_audio_audio_model_output(
         path_to_model, path_to_output_wav, input_audio_size,

@@ -1,8 +1,10 @@
+python==3.10.0
+
 # Required libraries for the wavenet project
 
 # Deep Learning Framework (TensorFlow with integrated Keras)
 # Replace with the exact TensorFlow version you used for development
-tensorflow==2.19.0
+tensorflow==2.10.0
 
 # Numerical operations
 # Specify a minimum version

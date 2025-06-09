@@ -1,5 +1,9 @@
+
 import os
 os.add_dll_directory(r"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.8\bin")
+# We'll need this to check if Tensorflow has access to the GPU
+# Useful for debugging during GPU training
+
 import tensorflow as tf
 import tensorflow as tf
 print(tf.__version__)
