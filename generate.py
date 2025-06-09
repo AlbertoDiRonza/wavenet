@@ -25,7 +25,7 @@ def generate_audio_audio_model_output(
     generated_audio = np.zeros(input_audio_size, dtype=np.int16)
     cur_frame = 0 
     while cur_frame < genereted_frames:
-        print(f"cur_frame: {cur_frame} on {genereated_frames}")
+        print(f"cur_frame: {cur_frame} on {genereted_frames}")
         # Remember to check: https://keras.io/api/models/model_training_apis/
         probability_distribution = wavenet.predict(
             generated_audio[cur_frame:].reshape(
